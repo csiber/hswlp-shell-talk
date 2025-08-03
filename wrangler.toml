@@ -14,7 +14,7 @@ pattern = "https://hswlp.com/talk*"
 zone_id = "26500c732ad41fa822fff18f4f977946"
 
 [site]
-bucket = ".open-next/assets"
+bucket = ".open-next/assets/talk"
 
 [observability]
 enabled = true
