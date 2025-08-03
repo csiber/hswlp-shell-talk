@@ -1,0 +1,61 @@
+name = "hswlp-shell-talk"
+main = ".open-next/worker.js"
+compatibility_date = "2025-03-01"
+
+compatibility_flags = [
+  "nodejs_compat",
+  "global_fetch_strictly_public"
+]
+
+minify = true
+
+[[routes]]
+pattern = "https://hswlp.com/talk*"
+zone_id = "26500c732ad41fa822fff18f4f977946"
+
+[site]
+bucket = ".open-next/assets"
+
+[observability]
+enabled = true
+
+[placement]
+mode = "smart"
+
+[vars]
+EMAIL_FROM = "no-reply@hswlp.hu"
+EMAIL_FROM_NAME = "HSWLP System"
+EMAIL_REPLY_TO = "support@hswlp.hu"
+JWT_SECRET = "J39sUxv9cvxqbiZDRfLoIGVYh3OcPK5Eq5zzT+eLq9tTyKX7j8pNR3p+E/OnswGZ8NWxKdfmrA1LZK1APpT7Hg=="
+SITE_URL = "https://hswlp.com"
+
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "hswlp-shell-talk"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hswlp-d1"
+database_id = "f81305ef-3fa9-40d5-a3ab-6ca18e568d9e"
+migrations_dir = "src/db/migrations"
+
+[[d1_databases]]
+binding = "NEXT_TAG_CACHE_D1"
+database_name = "hswlp-d1"
+database_id = "f81305ef-3fa9-40d5-a3ab-6ca18e568d9e"
+
+[[kv_namespaces]]
+binding = "SESSION_KV"
+id = "8d54a3027a4a409aaa8f1aaca9dc5171"
+
+[[kv_namespaces]]
+binding = "NEXT_INC_CACHE_KV"
+id = "60d93d82ece44987aefed74b1ec420ef"
+
+[[r2_buckets]]
+bucket_name = "hswlp-r2"
+binding = "hswlp_r2"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["DOQueueHandler"]
