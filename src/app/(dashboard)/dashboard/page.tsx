@@ -7,6 +7,13 @@ import { CallCard } from "@/components/CallCard";
 export default async function Page() {
   const session = await getSessionFromCookie();
 
+  const fullName = [session?.user?.firstName, session?.user?.lastName]
+    .filter(Boolean)
+    .join(" ");
+
+  const displayName =
+    session?.user?.nickname || fullName || session?.user?.email || "there";
+
   const calls = [
     { roomId: "abc123", duration: "12 min" },
     { roomId: "def456", duration: "5 min" },
@@ -14,7 +21,7 @@ export default async function Page() {
 
   return (
     <div className="p-4 space-y-6">
-      <h2 className="text-2xl font-semibold">Hi, {session?.user?.name}!</h2>
+      <h2 className="text-2xl font-semibold">Hi, {displayName}!</h2>
       <div className="grid gap-4 md:grid-cols-2">
         <Card>
           <CardHeader>
