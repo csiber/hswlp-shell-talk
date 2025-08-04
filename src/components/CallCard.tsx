@@ -1,17 +1,15 @@
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-
 interface CallCardProps {
   roomId: string;
   duration: string;
+  date: string;
 }
 
-export function CallCard({ roomId, duration }: CallCardProps) {
+export function CallCard({ roomId, duration, date }: CallCardProps) {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Room ID: {roomId}</CardTitle>
-        <CardDescription>Duration: {duration}</CardDescription>
-      </CardHeader>
-    </Card>
+    <div className="rounded-xl border p-4 bg-muted/30">
+      <div className="font-semibold">Room ID: {roomId}</div>
+      <div className="text-sm text-muted-foreground">Duration: {duration}</div>
+      <div className="text-sm text-muted-foreground">Date: {date}</div>
+    </div>
   );
 }
