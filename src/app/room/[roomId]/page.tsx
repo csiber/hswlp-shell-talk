@@ -1,10 +1,10 @@
-import { DisabledFeatureNotice } from "@/components/DisabledFeatureNotice";
+import DisabledFeatureNotice from "@/components/DisabledFeatureNotice";
 
 export default function RoomPage() {
   return (
     <DisabledFeatureNotice
-      title="The video call feature is under development"
-      message="The HSWLP:Talk backend will launch soon! In the meantime, you can explore the interface and view your past calls."
+      title="This feature is not available yet"
+      message="HSWLP:Talk's video call system is under development. Please check back soon!"
     />
   );
 }
