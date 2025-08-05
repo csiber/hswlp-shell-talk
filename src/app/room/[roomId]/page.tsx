@@ -4,7 +4,7 @@ export default function RoomPage() {
   return (
     <DisabledFeatureNotice
       title="This feature is not available yet"
-      message="HSWLP:Talk's video call system is under development. Please check back soon!"
+      message="Talk's video call system is under development. Please check back soon!"
     />
   );
 }
