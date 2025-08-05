@@ -11,7 +11,7 @@ const faqs = [
     answer: "Soon, the backend is currently under development.",
   },
   {
-    question: "Do I need any software to use HSWLP:Talk?",
+    question: "Do I need any software to use Talk?",
     answer: "No, everything runs directly in your browser.",
   },
   {

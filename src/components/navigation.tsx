@@ -1,9 +1,10 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import type { Route } from 'next'
 import { usePathname } from "next/navigation"
-import { ComponentIcon, Menu } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { useSessionStore } from "@/state/session"
@@ -104,8 +105,14 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="text-xl md:text-2xl font-bold text-primary flex items-center gap-2 md:gap-3">
-              <ComponentIcon className="w-6 h-6 md:w-7 md:h-7" />
-              {SITE_NAME}
+              <Image
+                src="/favicon.svg"
+                alt="Talk logo"
+                width={28}
+                height={28}
+                className="w-6 h-6 md:w-7 md:h-7"
+              />
+              <span className="animate-pulse">{SITE_NAME}</span>
             </Link>
           </div>
           <div className="hidden md:flex md:items-center md:space-x-6">
