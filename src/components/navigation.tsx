@@ -40,13 +40,14 @@ const UserMenu = ({ onNavigate }: { onNavigate?: () => void }) => {
   const displayName =
     user.nickname ||
     [user.firstName, user.lastName].filter(Boolean).join(" ") ||
-    user.email
+    user.email ||
+    ""
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="h-9 w-9 cursor-pointer">
-          <AvatarImage src={user.avatar ?? ''} alt={displayName} />
+          <AvatarImage src={user.avatar ?? ''} alt={displayName || undefined} />
           <AvatarFallback>{displayName.charAt(0)}</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
