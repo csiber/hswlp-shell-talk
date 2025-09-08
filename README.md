@@ -1,96 +1,75 @@
-# HSWLP:Next – Cloudflare alapú újgenerációs SaaS rendszer
+# HSWLP:Talk – Cloudflare-Powered Video Conferencing Platform
 
-Ez a repository a HSWLP platform `hswlp-next` nevű **új alaprendszere**, amelyre a különböző frontend rétegek (ún. **shellek**) épülnek. A rendszer teljesen Cloudflare-infrastruktúrán fut (Workers, D1, R2, KV), és készen áll SaaS alkalmazások hosztolására – külön back-end nélkül.
+**HSWLP:Talk** is a video conferencing application built on top of the  
+**HSWLP ecosystem**, combining a **Next.js frontend** with a **self-hosted Jitsi backend**.  
 
-Ez az alap biztosítja a következőket:
-
-- Bejelentkezés, regisztráció, email hitelesítés
-- Turnstile captcha
-- Cloudflare D1 adatbázis migrációkkal
-- R2 tárhely és KV session kezelés
-- Stripe integráció és emailküldés (Resend vagy Brevo)
-- Alkalmas Cloudflare Pages és Edge funkciók kiszolgálására
+It provides a **credit-based SaaS model** for secure, flexible, and customizable online meetings.  
+The system is designed to be reliable yet lightweight, making it suitable for personal, community,  
+or business use cases without the complexity of enterprise-scale tools.
 
 ---
 
-## Használat lokálisan
+## ✨ Key Features (Planned & Implemented)
 
-1. Telepítés:
-
-   ```bash
-   pnpm install
-   ```
-
-2. Környezeti változók:
-
-   - Másold le a `.env.example` fájlt `.env` néven, majd töltsd ki.
-   - Ha használod: `.dev.vars.example` → `.dev.vars`
-
-3. Lokális migráció és indítás:
-
-   ```bash
-   pnpm db:migrate:dev
-   pnpm dev
-   ```
-
-4. Nyisd meg a böngészőben:
-   [http://localhost:3000](http://localhost:3000)
+- 🎥 **Video & Audio Conferencing** – powered by Jitsi  
+- 🔐 **Authentication** – login required before starting or joining calls  
+- 💳 **Credit System** – usage-based credits or subscription plans (via Stripe)  
+- 🗂️ **Call Logging** – all calls tracked in D1 database  
+- ☁️ **Cloudflare Frontend** – built with Next.js and deployed on Cloudflare Pages  
+- 🏷️ **White-Label Option** – companies can brand the platform for internal use  
 
 ---
 
-## Cloudflare deploy
+## 🛠️ Architecture
 
-A rendszer automatikusan deployolható Cloudflare Workers-re:
-
-```bash
-pnpm run deploy
-```
-
-Ez lefuttatja az `opennext:build` és `opennextjs-cloudflare deploy` parancsokat, majd feltölti:
-
-- a Worker kódot
-- statikus asseteket (R2)
-- titkos környezeti változókat (`wrangler secret put`)
-- valamint a `wrangler.json` alapján hozzárendeli:
-  - D1 adatbázist
-  - KV namespace-eket
-  - R2 bucketet
-
-A `.env` fájl NEM kerül automatikusan feltöltésre – a titkos adatokat külön kell beállítani `wrangler secret put` paranccsal vagy a Cloudflare dashboardon.
+- **Frontend:** Next.js (React, Tailwind)  
+- **Backend:** Self-hosted Jitsi server (Docker on Unraid)  
+- **Database:** Cloudflare D1 for call logs & credits  
+- **Storage:** Cloudflare R2 (optional for recordings)  
+- **Payments:** Stripe integration  
+- **Hosting:** Cloudflare Pages + Cloudflare Tunnel for backend access  
 
 ---
 
-## Fontos konfigurációs helyek
+## 📅 Current Status
 
-- Állandók: `src/constants.ts`
-- Email sablonok: `src/react-email/`
-- Globális CSS: `src/app/globals.css`
-- Meta adatok: `src/app/layout.tsx`
-- Wrangler config: `wrangler.json`
+🚧 **In development** – core conferencing and credit system under active work.  
+The platform is functional but still in prototyping phase.  
 
 ---
 
-## Email sablonok előnézete
+## 📌 Roadmap
 
-```bash
-pnpm email:dev
-```
+- [ ] User authentication & profiles  
+- [ ] Credit-based call management  
+- [ ] Call logging & statistics dashboard  
+- [ ] Optional recording to R2  
+- [ ] White-label customization module  
+- [ ] Stripe-based subscription plans  
 
-→ [http://localhost:3001](http://localhost:3001)
+---
+
+## 🌍 Part of the HSWLP Ecosystem
+
+HSWLP:Talk is one of the applications in the  
+**HSWLP (Hybrid Service Workflow Launch Platform)** initiative.  
+
+It connects with other projects such as:  
+- **Otokai** – music streaming & jukebox system  
+- **Blogocska** – blogging demo shell  
+- **HSWLP:NAS** – local Docker stack manager  
+- **HSWLP:Cloud** – static site deployments  
+
+Together, these projects showcase how **Cloudflare-native technology**  
+can power modern SaaS platforms and community-driven applications.  
 
 ---
 
-## A rendszer jövője
+## 📜 License
 
-A `hswlp-next` az alapja minden jövőbeli HSWLP shellnek, ideértve:
-
-- `HSWLP:Cloud` (statikus site deploy)
-- `HSWLP:NAS` (helyi Docker stack manager)
-- `HSWLP:Dev` (fejlesztői központ)
-- `HSWLP:Store` (sablon piactér)
-- `HSWLP:Academy` (oktatási modul)
-
-Egy közös rendszer, több célra.
-Tisztán, Cloudflare-alapon.
+Released under the **MIT License**.  
 
 ---
+
+**HSWLP:Talk** brings together **secure video calls, flexible billing,  
+and Cloudflare’s global infrastructure** into one modern communication tool.
